@@ -12,21 +12,23 @@ namespace CaesarCipher
             {
                 if (Convert.ToInt32(textArray[i]) >= 65 && Convert.ToInt32(textArray[i]) <= 90)
                 {
-                    if(Convert.ToInt32(textArray[i]) + shiftKey > 90)
-                        textArray[i] = (char)(Convert.ToInt32(textArray[i]) + shiftKey - 26);
-                    else
-                    textArray[i] = (char)(Convert.ToInt32(textArray[i]) + shiftKey);
+                    CaesarCipherRotate(shiftKey, textArray, i, 90);
                 }
                 else if(Convert.ToInt32(textArray[i]) >= 97 && Convert.ToInt32(textArray[i]) <= 122)
                 {
-                    if (Convert.ToInt32(textArray[i]) + shiftKey > 122)
-                        textArray[i] = (char)(Convert.ToInt32(textArray[i]) + shiftKey - 26);
-                    else
-                        textArray[i] = (char)(Convert.ToInt32(textArray[i]) + shiftKey);
+                    CaesarCipherRotate(shiftKey, textArray, i,122);
                 }
             }
             String cipherText = new String(textArray);
             return cipherText;
+        }
+
+        private static void CaesarCipherRotate(int shiftKey, char[] textArray, int i,int upperLimit)
+        {
+            if (Convert.ToInt32(textArray[i]) + shiftKey > upperLimit)
+                textArray[i] = (char)(Convert.ToInt32(textArray[i]) + shiftKey - 26);
+            else
+                textArray[i] = (char)(Convert.ToInt32(textArray[i]) + shiftKey);
         }
     }
 }
